@@ -1,0 +1,11 @@
+# 云端训练依赖（AutoDL 实例内安装）
+# 用法：pip install -r requirements-train.txt
+# 注意：unsloth 版本需与 CUDA/PyTorch 匹配，请参照 Unsloth 官方安装说明
+torch>=2.4
+unsloth
+trl>=0.9
+peft
+datasets
+accelerate
+bitsandbytes
+xformers

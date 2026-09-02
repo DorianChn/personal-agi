@@ -1,0 +1,30 @@
+# ================= Python =================
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+
+# ================= 模型与数据（不提交大文件）=================
+outputs/
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+*.gguf
+*.bin
+*.safetensors
+*.pt
+*.pth
+
+# ================= 工具 =================
+.idea/
+.vscode/
+.DS_Store
+*.log
+
+# ================= 环境 =================
+.env
