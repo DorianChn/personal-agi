@@ -100,7 +100,18 @@ uv run python scripts/make_sample_data.py
 # 产出 data/processed/train.jsonl 与 eval.jsonl（约 50 条示例问答）
 ```
 
-### 3. 云端训练 9B（AutoDL）
+### 3. 本地训练小模型（可选，验证流程）
+
+8GB 显存可训 0.6B / 1.7B，详见 [docs/training-local.md](docs/training-local.md)：
+
+```bash
+pip install torch --index-url https://download.pytorch.org/whl/cu128
+pip install numpy transformers peft trl bitsandbytes datasets accelerate
+python scripts/train_local.py --model Qwen/Qwen3-0.6B --epochs 3
+python scripts/train_local.py --model Qwen/Qwen3-1.7B --epochs 2
+```
+
+### 4. 云端训练 9B（AutoDL）
 
 详见 [docs/training.md](docs/training.md)，核心命令：
 
@@ -111,21 +122,21 @@ pip install -r docker/requirements-train.txt
 python scripts/train_cloud.py --config config/config.yaml
 ```
 
-### 4. 合并 + 量化
+### 5. 合并 + 量化
 
 ```bash
 python scripts/merge.py --config config/config.yaml
 python scripts/quantize.py --config config/config.yaml
 ```
 
-### 5. 导入 Ollama + 本地推理
+### 6. 导入 Ollama + 本地推理
 
 ```bash
 python scripts/import_ollama.py --name personal-agi-9b
 ollama run personal-agi-9b
 ```
 
-### 6. 日常使用
+### 7. 日常使用
 
 ```bash
 uv run streamlit run app/app.py     # 打开浏览器对话界面

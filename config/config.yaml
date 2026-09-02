@@ -7,6 +7,14 @@ base_model:
   # 本地推理使用的 Ollama 模型名
   ollama_base: "qwen3.5:9b"
 
+# ============ 本地训练（8GB 显存，transformers+peft）============
+local_training:
+  # 本地可训的基座（8GB 显存范围）
+  models:
+    - "Qwen/Qwen3-0.6B"
+    - "Qwen/Qwen3-1.7B"
+  # 脚本：scripts/train_local.py
+
 # ============ 训练参数（云端 QLoRA）============
 training:
   output_dir: "./outputs"            # 训练产物输出目录
