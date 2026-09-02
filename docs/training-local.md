@@ -45,19 +45,35 @@ python scripts/train_local.py --model D:/models/models/Qwen--Qwen3-1.7B/snapshot
 
 产物输出到 `outputs/local/<模型名-时间戳>/lora_adapter/`。
 
-## 五、显存优化技巧（8GB）
+## 五、训练后推理验证
+
+```bash
+# 验证 0.6B 微调模型
+python scripts/infer_local.py \
+  --base D:/models/models/Qwen--Qwen3-0.6B/snapshots/master \
+  --adapter outputs/local/qwen3-0.6b-finetuned/lora_adapter \
+  --prompt "用一句话解释什么是大语言模型"
+
+# 验证 1.7B 微调模型
+python scripts/infer_local.py \
+  --base D:/models/models/Qwen--Qwen3-1.7B/snapshots/master \
+  --adapter outputs/local/qwen3-1.7b-finetuned/lora_adapter \
+  --prompt "用一句话解释什么是均线"
+```
+
+## 六、显存优化技巧（8GB）
 
 - 已默认开启：梯度检查点 + fp16
 - 1.7B 若 OOM：进一步减小 `max_seq_length`（如 256）或 `lora_r`
 - 训练前关闭占用显存的程序（如其它正在跑的模型）
 
-## 六、训练完成后
+## 七、训练完成后
 
 LoRA adapter 可：
 1. 直接合并推理（`scripts/merge.py`，需改用本地基座路径）
 2. 或先验证效果，满意后再迁移到云端训 9B
 
-## 七、与云端的关系
+## 八、与云端的关系
 
 ```
 本地 0.6B/1.7B  ──→ 快速验证数据质量、提示词、流程
