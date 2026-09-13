@@ -157,6 +157,6 @@ uv run uvicorn app.api:app --port 8000   # 或 OpenAI 兼容 API
 
 ---
 
-## 相关仓库
+## 模型产物
 
-- [qwen3-8-9b-scz](https://github.com/DorianChn/qwen3-8-9b-scz) — 本流水线产出的专属模型发布仓（GGUF 与评测结果）
+模型权重和 GGUF 文件不会随代码仓库提交。请按[训练指南](docs/training.md)生成并导出产物，再按[部署指南](docs/deployment.md)导入 Ollama。
