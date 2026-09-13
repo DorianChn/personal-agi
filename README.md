@@ -154,3 +154,9 @@ uv run uvicorn app.api:app --port 8000   # 或 OpenAI 兼容 API
 ## License
 
 [MIT](LICENSE)
+
+---
+
+## 相关仓库
+
+- [qwen3-8-9b-scz](https://github.com/DorianChn/qwen3-8-9b-scz) — 本流水线产出的专属模型发布仓（GGUF 与评测结果）
