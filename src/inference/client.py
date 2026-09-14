@@ -76,9 +76,38 @@ class InferenceClient:
             "max_tokens": max_tokens,
             "stream": stream,
         }
+        if stream:
+            return self._stream_openai(url, payload, headers)
         resp = requests.post(url, json=payload, headers=headers, timeout=120)
         resp.raise_for_status()
         return resp.json()["choices"][0]["message"]["content"]
+
+    def _stream_openai(self, url, payload, headers):
+        """Yield content chunks from OpenAI-compatible SSE or JSONL responses."""
+        with requests.post(
+            url,
+            json=payload,
+            headers=headers,
+            stream=True,
+            timeout=120,
+        ) as resp:
+            resp.raise_for_status()
+            for raw_line in resp.iter_lines(decode_unicode=True):
+                if not raw_line:
+                    continue
+                line = raw_line.decode("utf-8") if isinstance(raw_line, bytes) else raw_line
+                if line.startswith("data:"):
+                    line = line[5:].strip()
+                if line == "[DONE]":
+                    break
+                data = json.loads(line)
+                choices = data.get("choices") or []
+                if not choices:
+                    continue
+                delta = choices[0].get("delta") or {}
+                chunk = delta.get("content") or delta.get("reasoning_content") or ""
+                if chunk:
+                    yield chunk
 
 
 def get_client(cfg: dict) -> InferenceClient:
