@@ -40,7 +40,7 @@ def main() -> None:
             tokenizer,
             quantization_method=quant_type,
         )
-        print(f"✅ GGUF 已导出至 {out_dir}")
+        print(f"[ok] GGUF 已导出至 {out_dir}")
         return
     except ImportError:
         pass

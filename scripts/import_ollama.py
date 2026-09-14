@@ -31,7 +31,7 @@ def main() -> None:
 
     print(f"=== 导入 Ollama：{args.name} ===")
     subprocess.run(["ollama", "create", args.name, "-f", str(mf_path)], check=True)
-    print(f"✅ 已导入，可用 `ollama run {args.name}` 对话")
+    print(f"[ok] 已导入，可用 `ollama run {args.name}` 对话")
 
 
 if __name__ == "__main__":

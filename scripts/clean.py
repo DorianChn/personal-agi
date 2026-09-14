@@ -83,7 +83,7 @@ def main() -> None:
     write(out_dir / "train.jsonl", train)
     write(out_dir / "eval.jsonl", eval_set)
 
-    print(f"✅ 清洗完成：原始 {len(all_rows)} 条 → 有效 {len(cleaned)} 条")
+    print(f"[ok] 清洗完成：原始 {len(all_rows)} 条 -> 有效 {len(cleaned)} 条")
     print(f"   训练集 {len(train)} 条，验证集 {len(eval_set)} 条")
 
 

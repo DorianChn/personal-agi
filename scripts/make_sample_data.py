@@ -61,9 +61,10 @@ def make_samples(
     write(out_dir / "train.jsonl", train)
     write(out_dir / "eval.jsonl", eval_set)
 
-    print(f"✅ 已生成示例数据：{out_dir/'train.jsonl'} ({len(train)} 条)")
-    print(f"✅ 已生成示例数据：{out_dir/'eval.jsonl'} ({len(eval_set)} 条)")
-    print("⚠️  这是演示数据，正式训练请替换为你的真实数据（见 docs/data.md）")
+    # Keep the CLI safe on Windows consoles that still use the GBK code page.
+    print(f"[ok] 已生成示例数据：{out_dir/'train.jsonl'} ({len(train)} 条)")
+    print(f"[ok] 已生成示例数据：{out_dir/'eval.jsonl'} ({len(eval_set)} 条)")
+    print("[warning] 这是演示数据，正式训练请替换为你的真实数据（见 docs/data.md）")
 
 
 if __name__ == "__main__":

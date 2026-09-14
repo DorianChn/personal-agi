@@ -38,7 +38,7 @@ def main() -> None:
     model = model.merge_and_unload()
     model.save_pretrained(str(out), save_method="merged_16bit")
     tokenizer.save_pretrained(str(out))
-    print(f"✅ 合并完成，完整权重保存至 {out}")
+    print(f"[ok] 合并完成，完整权重保存至 {out}")
 
 
 if __name__ == "__main__":

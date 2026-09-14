@@ -12,6 +12,7 @@ venv/
 outputs/
 data/raw/*
 data/processed/*
+data/ci-cleaned/
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 *.gguf
